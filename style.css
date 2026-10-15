@@ -1,0 +1,1718 @@
+/* ==========================================================================
+   Re:Connect Mobile Invitation Stylesheet
+   WordPress "Moments" (Luxury Event & Celebration) Theme Edition
+   ========================================================================== */
+
+/* --- 1. CSS Variables & Theme Tokens --- */
+:root {
+  --font-serif-display: 'Playfair Display', 'Cormorant Garamond', 'Noto Serif KR', serif;
+  --font-serif-body: 'Noto Serif KR', 'Cormorant Garamond', serif;
+  --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-accent: 'Cinzel', 'Montserrat', serif;
+  --font-caps: 'Montserrat', sans-serif;
+
+  /* Moments Luxury Color Palette */
+  --wp-bg-dark: #0F141C;
+  --wp-bg-paper: #FAF7F2;
+  --wp-bg-card: #FFFFFF;
+  --wp-bg-soft: #F4EFEB;
+  --wp-bg-alt: #EFE8DF;
+
+  --wp-navy-deep: #16202E;
+  --wp-navy-soft: #233145;
+  --wp-text-main: #2A2826;
+  --wp-text-muted: #6B6661;
+  --wp-text-faint: #9E9891;
+
+  --wp-gold: #C5A880;
+  --wp-gold-light: #DFCAB0;
+  --wp-gold-dark: #A37F53;
+  --wp-gold-rich: #D4AF37;
+  --wp-gold-glow: rgba(197, 168, 128, 0.28);
+
+  --wp-border-gold: rgba(197, 168, 128, 0.35);
+  --wp-border-subtle: rgba(42, 40, 38, 0.08);
+
+  --wp-shadow-sm: 0 4px 16px rgba(22, 32, 46, 0.05);
+  --wp-shadow-md: 0 10px 30px rgba(22, 32, 46, 0.08);
+  --wp-shadow-lg: 0 18px 45px rgba(22, 32, 46, 0.12);
+  --wp-shadow-gold: 0 8px 24px rgba(197, 168, 128, 0.25);
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 9999px;
+
+  --transition-smooth: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* --- 2. Reset & Global Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--wp-bg-dark);
+}
+
+body {
+  font-family: var(--font-serif-body);
+  background-color: var(--wp-bg-dark);
+  color: var(--wp-text-main);
+  line-height: 1.7;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+/* 캔버스 배경 (꽃잎 파티클 효과) */
+.petal-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* --- 3. Mobile Wrapper & Layout --- */
+.mobile-wrapper.wp-theme-moments {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  background-color: var(--wp-bg-paper);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.45);
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+/* --- 4. Top Utility Nav Bar --- */
+.top-nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 54px;
+  padding: 0 20px;
+  background: rgba(250, 247, 242, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  border-bottom: 1px solid var(--wp-border-gold);
+}
+
+.nav-brand {
+  font-family: var(--font-accent);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--wp-gold-dark);
+  text-transform: uppercase;
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.control-btn {
+  background: var(--wp-bg-card);
+  border: 1px solid var(--wp-border-gold);
+  border-radius: var(--radius-full);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--wp-text-muted);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.control-btn:active {
+  transform: scale(0.92);
+}
+
+.control-btn.active {
+  color: var(--wp-navy-deep);
+  border-color: var(--wp-gold);
+  background: rgba(197, 168, 128, 0.18);
+}
+
+.control-btn .icon {
+  width: 17px;
+  height: 17px;
+}
+
+.btn-tooltip {
+  display: none;
+}
+
+/* --- 5. Sections Base Style --- */
+.section {
+  padding: 50px 24px;
+  position: relative;
+  width: 100%;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 26px;
+  position: relative;
+}
+
+.section-label {
+  display: inline-block;
+  font-family: var(--font-accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  color: var(--wp-gold-dark);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: var(--font-serif-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--wp-navy-deep);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.section-desc {
+  font-family: var(--font-serif-body);
+  font-size: 0.9rem;
+  color: var(--wp-text-muted);
+  margin-top: 6px;
+  word-break: keep-all;
+}
+
+/* --- 6. Hero / Cover Section (Moments Signature Arch) --- */
+.hero-section {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 64px 24px 44px;
+  background: linear-gradient(180deg, #FDFBF8 0%, #F8F4ED 55%, #F0E8DC 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Moments 테마 시그니처: 아치(Arch) 테두리 프레임 */
+.hero-arch-frame {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  border: 1px solid var(--wp-border-gold);
+  border-top-left-radius: 200px;
+  border-top-right-radius: 200px;
+  border-bottom-left-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+  pointer-events: none;
+}
+
+.hero-arch-frame::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: 1px dashed rgba(197, 168, 128, 0.25);
+  border-top-left-radius: 195px;
+  border-top-right-radius: 195px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  pointer-events: none;
+}
+
+/* Moments 테마 클래식 골드 모노그램 씰 */
+.theme-monogram-seal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 2;
+}
+
+.seal-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  border: 1px solid var(--wp-gold);
+  background: #FFFFFF;
+  box-shadow: var(--wp-shadow-gold);
+  position: relative;
+}
+
+.seal-inner::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  border-radius: 50%;
+  border: 1px dashed var(--wp-gold-light);
+}
+
+.seal-monogram {
+  font-family: var(--font-accent);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--wp-gold-dark);
+}
+
+.seal-branch {
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+.seal-year {
+  font-family: var(--font-caps);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: var(--wp-gold-dark);
+  margin-top: 8px;
+}
+
+.hero-badge {
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--wp-gold-dark);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 18px;
+  z-index: 2;
+}
+
+.hero-title .title-sub {
+  font-family: var(--font-serif-body);
+  font-size: 1.05rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--wp-text-muted);
+}
+
+.hero-title .title-main {
+  font-family: var(--font-serif-display);
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--wp-navy-deep);
+  line-height: 1.08;
+  text-shadow: 0 4px 14px rgba(22, 32, 46, 0.08);
+}
+
+/* 오너먼트 디바이더 */
+.hero-ornament-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  max-width: 180px;
+  z-index: 2;
+}
+
+.ornament-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--wp-gold), transparent);
+}
+
+.ornament-diamond {
+  font-size: 0.65rem;
+  color: var(--wp-gold-dark);
+}
+
+.hero-date-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--wp-gold-light);
+  border-radius: var(--radius-full);
+  box-shadow: var(--wp-shadow-sm);
+  margin-bottom: 14px;
+  z-index: 2;
+}
+
+.hero-date-badge .date-icon {
+  color: var(--wp-gold);
+  font-size: 0.75rem;
+}
+
+.hero-date-badge .date-text {
+  font-family: var(--font-caps);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--wp-navy-deep);
+}
+
+.hero-location-tag {
+  font-family: var(--font-serif-body);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--wp-gold-dark);
+  letter-spacing: 0.12em;
+  z-index: 2;
+}
+
+.scroll-indicator {
+  margin-top: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: var(--wp-gold-dark);
+  animation: floatDown 2s ease-in-out infinite;
+  z-index: 2;
+}
+
+.scroll-arrow {
+  font-size: 1.1rem;
+  color: var(--wp-gold);
+}
+
+@keyframes floatDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* --- 7. Invitation Text Card Section --- */
+.invitation-section {
+  padding-top: 24px;
+}
+
+.invitation-card {
+  background: var(--wp-bg-card);
+  padding: 46px 28px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--wp-border-gold);
+  box-shadow: var(--wp-shadow-md);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.invitation-card::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 1px solid rgba(197, 168, 128, 0.22);
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+.quote-mark {
+  font-family: var(--font-serif-display);
+  font-size: 4rem;
+  color: var(--wp-gold-light);
+  line-height: 1;
+  margin-bottom: -18px;
+  opacity: 0.75;
+}
+
+.invitation-body {
+  margin-top: 18px;
+}
+
+.invitation-body .lead-text {
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--wp-navy-deep);
+  margin-bottom: 22px;
+  word-break: keep-all;
+}
+
+.invitation-body .lead-text strong {
+  font-family: var(--font-serif-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--wp-gold-dark);
+  font-style: italic;
+}
+
+.divider-flower {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 24px auto;
+  max-width: 200px;
+}
+
+.divider-flower .line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--wp-gold), transparent);
+}
+
+.divider-flower .flower-icon {
+  color: var(--wp-gold-dark);
+  font-size: 0.95rem;
+}
+
+.invitation-body .paragraph {
+  font-family: var(--font-serif-body);
+  font-size: 0.96rem;
+  line-height: 2.05;
+  color: var(--wp-text-muted);
+  margin-bottom: 18px;
+  word-break: keep-all;
+}
+
+.invitation-body .highlight-paragraph {
+  color: var(--wp-text-main);
+  font-weight: 600;
+  margin-top: 24px;
+}
+
+.signature {
+  margin-top: 36px;
+  padding-top: 18px;
+  border-top: 1px solid var(--wp-border-subtle);
+}
+
+.signature-role {
+  font-family: var(--font-serif-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--wp-gold-dark);
+  letter-spacing: 0.08em;
+}
+
+/* --- 8. [사진 섹션] - Moments Magazine Lookbook Slider --- */
+.photo-section {
+  background: #F4EFEA;
+  padding: 48px 20px 52px;
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--wp-shadow-lg);
+  background: #111;
+  border: 2px solid var(--wp-border-gold);
+  touch-action: pan-y;
+}
+
+.slider-track {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+}
+
+.slide-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.97) translateX(30px);
+  transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+              visibility 0.7s;
+  cursor: pointer;
+}
+
+.slide-item.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translateX(0);
+  z-index: 2;
+}
+
+.slide-item.prev-out {
+  transform: scale(0.97) translateX(-30px);
+}
+
+.slide-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.9s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.slide-item:hover .slide-img {
+  transform: scale(1.05);
+}
+
+.slide-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(22, 32, 46, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--wp-gold-light);
+  font-family: var(--font-accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.1em;
+  border: 1px solid rgba(197, 168, 128, 0.3);
+}
+
+.slide-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 34px 20px 20px;
+  background: linear-gradient(180deg, transparent 0%, rgba(15, 20, 28, 0.88) 55%, rgba(15, 20, 28, 0.98) 100%);
+  color: #fff;
+  text-align: left;
+}
+
+.slide-title {
+  font-family: var(--font-serif-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 4px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+.slide-sub {
+  font-family: var(--font-serif-body);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.88);
+  font-weight: 300;
+  line-height: 1.45;
+  word-break: keep-all;
+}
+
+/* 슬라이더 화살표 */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--wp-border-gold);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--wp-navy-deep);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  transition: var(--transition-smooth);
+}
+
+.slider-arrow:active {
+  transform: translateY(-50%) scale(0.9);
+}
+
+.slider-arrow.prev-arrow { left: 12px; }
+.slider-arrow.next-arrow { right: 12px; }
+
+.slider-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* 슬라이더 컨트롤 */
+.slider-controls {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 12;
+}
+
+.slider-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot-btn {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.45);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot-btn.active {
+  width: 24px;
+  background: var(--wp-gold);
+}
+
+.play-pause-btn {
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(4px);
+  border: none;
+  border-radius: var(--radius-full);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+}
+
+.play-pause-btn svg {
+  width: 12px;
+  height: 12px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.photo-tip {
+  text-align: center;
+  margin-top: 16px;
+  font-family: var(--font-serif-body);
+  font-size: 0.8rem;
+  color: var(--wp-text-faint);
+}
+
+/* --- 9. [카운트다운 섹션] - Moments Gold-Rimmed Live Countdown --- */
+.countdown-section {
+  padding: 48px 20px;
+}
+
+.countdown-card {
+  background: var(--wp-bg-card);
+  border-radius: var(--radius-lg);
+  padding: 40px 20px 34px;
+  border: 1px solid var(--wp-border-gold);
+  box-shadow: var(--wp-shadow-md);
+  text-align: center;
+  position: relative;
+}
+
+.countdown-card::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 1px solid rgba(197, 168, 128, 0.2);
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+.event-schedule-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  margin-top: 14px;
+  font-family: var(--font-serif-body);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--wp-navy-deep);
+}
+
+.dday-badge-wrapper {
+  margin: 20px 0 24px;
+}
+
+.dday-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--wp-navy-deep) 0%, var(--wp-navy-soft) 100%);
+  color: var(--wp-gold-light);
+  border: 1px solid var(--wp-gold);
+  font-family: var(--font-accent);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  padding: 8px 24px;
+  border-radius: var(--radius-full);
+  box-shadow: var(--wp-shadow-sm);
+  animation: pulseMoments 2.5s infinite;
+}
+
+@keyframes pulseMoments {
+  0%, 100% { transform: scale(1); box-shadow: var(--wp-shadow-sm); }
+  50% { transform: scale(1.03); box-shadow: 0 8px 24px rgba(197, 168, 128, 0.35); }
+}
+
+/* 카운트다운 타이머 그리드: Moments 테마 특유의 골드 림 카드 */
+.countdown-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 26px;
+}
+
+.time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 68px;
+}
+
+.time-digit-wrapper {
+  background: #FFFFFF;
+  color: var(--wp-navy-deep);
+  border-radius: var(--radius-md);
+  width: 100%;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--wp-gold);
+  box-shadow: 0 4px 16px rgba(197, 168, 128, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.time-digit-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--wp-gold-dark), var(--wp-gold-light));
+}
+
+.time-digit {
+  font-family: var(--font-serif-display);
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--wp-navy-deep);
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.time-digit.tick {
+  animation: digitPulse 0.3s ease-out;
+}
+
+@keyframes digitPulse {
+  0% { transform: scale(0.92); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.time-unit {
+  font-family: var(--font-caps);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--wp-gold-dark);
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+
+.time-colon {
+  font-family: var(--font-serif-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--wp-gold);
+  align-self: flex-start;
+  margin-top: 18px;
+  animation: blinkColon 1s infinite;
+}
+
+@keyframes blinkColon {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.countdown-footer-msg {
+  font-family: var(--font-serif-body);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--wp-text-muted);
+  word-break: keep-all;
+  margin-bottom: 26px;
+}
+
+/* 캘린더 등록 버튼 */
+.calendar-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.calendar-btn {
+  flex: 1;
+  max-width: 175px;
+  padding: 12px 14px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--wp-border-gold);
+  background: var(--wp-bg-soft);
+  color: var(--wp-navy-deep);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.calendar-btn:active {
+  transform: scale(0.96);
+  background: var(--wp-bg-alt);
+}
+
+.calendar-btn svg {
+  width: 16px;
+  height: 16px;
+  color: var(--wp-gold-dark);
+}
+
+/* --- 10. [지도 섹션] - 300x300픽셀 크기 "창경궁" 구글 위치 지도 (Moments Frame) --- */
+.map-section {
+  background: #F7F3EC;
+  padding: 48px 20px 52px;
+  text-align: center;
+}
+
+.section-place-name {
+  font-family: var(--font-serif-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--wp-navy-deep);
+  margin-top: 6px;
+}
+
+.section-place-address {
+  font-family: var(--font-serif-body);
+  font-size: 0.9rem;
+  color: var(--wp-text-muted);
+  margin-top: 4px;
+}
+
+/* 정확히 300x300 픽셀 크기 Moments 테두리 래퍼 */
+.map-wrapper-300 {
+  width: 300px;
+  margin: 26px auto 18px;
+  border-radius: var(--radius-lg);
+  background: #FFFFFF;
+  box-shadow: var(--wp-shadow-md);
+  border: 2px solid var(--wp-gold);
+  overflow: hidden;
+  position: relative;
+  transition: var(--transition-smooth);
+}
+
+.map-wrapper-300:hover {
+  box-shadow: 0 16px 40px rgba(197, 168, 128, 0.3);
+}
+
+/* 지도 헤더 */
+.map-frame-header {
+  height: 38px;
+  background: #FFFFFF;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--wp-border-gold);
+  z-index: 20;
+  position: relative;
+}
+
+.google-brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.google-pin-icon {
+  width: 17px;
+  height: 17px;
+  color: #EA4335;
+}
+
+.google-text {
+  font-family: var(--font-caps);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--wp-navy-deep);
+  letter-spacing: 0.05em;
+}
+
+.map-target-title {
+  font-family: var(--font-serif-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--wp-gold-dark);
+  background: rgba(197, 168, 128, 0.15);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+/* 정확히 300x300픽셀 크기 지도 컨테이너 */
+.google-map-300 {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  background-color: #E8EAED;
+  overflow: hidden;
+}
+
+.google-map-300 iframe {
+  width: 300px !important;
+  height: 300px !important;
+  border: 0;
+  display: block;
+}
+
+/* 지도 프레임 하단 */
+.map-frame-footer {
+  height: 28px;
+  background: #FAFAFA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: var(--wp-text-faint);
+  border-top: 1px solid #ECECEC;
+}
+
+/* 구글 지도 버튼 그룹 */
+.map-action-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  width: 300px;
+  margin: 0 auto 14px;
+}
+
+.google-map-btn, .google-route-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 6px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition-smooth);
+}
+
+.google-map-btn {
+  background: linear-gradient(135deg, var(--wp-navy-deep) 0%, var(--wp-navy-soft) 100%);
+  color: var(--wp-gold-light);
+  border: 1px solid var(--wp-gold);
+  box-shadow: 0 4px 14px rgba(22, 32, 46, 0.2);
+}
+
+.google-map-btn:active {
+  transform: scale(0.96);
+}
+
+.btn-g-icon {
+  width: 15px;
+  height: 15px;
+  fill: var(--wp-gold-light);
+}
+
+.google-route-btn {
+  background-color: #FFFFFF;
+  color: var(--wp-navy-deep);
+  border: 1.5px solid var(--wp-gold);
+}
+
+.google-route-btn:active {
+  background-color: rgba(197, 168, 128, 0.12);
+  transform: scale(0.96);
+}
+
+.google-route-btn svg {
+  width: 15px;
+  height: 15px;
+  color: var(--wp-gold-dark);
+}
+
+/* 주소 복사 버튼 */
+.copy-address-wrapper {
+  margin-bottom: 24px;
+}
+
+.copy-address-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border: 1px solid var(--wp-border-gold);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--wp-text-muted);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.copy-address-btn:active {
+  background: var(--wp-bg-alt);
+  transform: scale(0.96);
+}
+
+.copy-address-btn svg {
+  width: 14px;
+  height: 14px;
+  color: var(--wp-gold-dark);
+}
+
+/* 대중교통 안내 박스 */
+.transport-info-box {
+  background: var(--wp-bg-card);
+  border-radius: var(--radius-md);
+  padding: 24px 20px;
+  border: 1px solid var(--wp-border-gold);
+  text-align: left;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.transport-item {
+  margin-bottom: 16px;
+}
+
+.transport-item:last-child {
+  margin-bottom: 0;
+}
+
+.transport-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.transport-header strong {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--wp-navy-deep);
+}
+
+.transport-badge {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.transport-badge.subway { background-color: #00A4E3; }
+.transport-badge.bus { background-color: #33A852; }
+.transport-badge.car { background-color: #7A808A; }
+
+.transport-item p {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--wp-text-muted);
+  line-height: 1.55;
+  padding-left: 36px;
+}
+
+/* --- 11. RSVP Form Section --- */
+.rsvp-section {
+  padding: 44px 20px;
+}
+
+.rsvp-card {
+  background: var(--wp-bg-card);
+  border-radius: var(--radius-lg);
+  padding: 38px 24px;
+  border: 1px solid var(--wp-border-gold);
+  box-shadow: var(--wp-shadow-md);
+  text-align: center;
+  position: relative;
+}
+
+.rsvp-card::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 1px dashed rgba(197, 168, 128, 0.25);
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+.rsvp-form {
+  margin-top: 24px;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--wp-navy-deep);
+  margin-bottom: 6px;
+}
+
+.form-group label .required {
+  color: #B23B3B;
+}
+
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  border: 1px solid var(--wp-border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--wp-bg-soft);
+  color: var(--wp-text-main);
+  outline: none;
+  transition: var(--transition-smooth);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--wp-gold);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px var(--wp-gold-glow);
+}
+
+.radio-pill-group {
+  display: flex;
+  gap: 8px;
+}
+
+.radio-pill {
+  flex: 1;
+  position: relative;
+  cursor: pointer;
+}
+
+.radio-pill input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radio-pill span {
+  display: block;
+  text-align: center;
+  padding: 11px 8px;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  background: var(--wp-bg-soft);
+  border: 1px solid var(--wp-border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--wp-text-muted);
+  transition: var(--transition-smooth);
+}
+
+.radio-pill input:checked + span {
+  background: var(--wp-navy-deep);
+  border-color: var(--wp-navy-deep);
+  color: var(--wp-gold-light);
+  box-shadow: var(--wp-shadow-sm);
+}
+
+.submit-rsvp-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, var(--wp-gold-dark) 0%, var(--wp-gold) 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 0.96rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  box-shadow: var(--wp-shadow-gold);
+  transition: var(--transition-smooth);
+  margin-top: 10px;
+}
+
+.submit-rsvp-btn:active {
+  transform: scale(0.97);
+}
+
+.rsvp-success-msg {
+  margin-top: 20px;
+  padding: 16px;
+  background: #EDFBF2;
+  border: 1px solid #C4F1D4;
+  border-radius: var(--radius-md);
+  color: #147A3F;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.success-icon {
+  background: #147A3F;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+
+/* --- 12. Guestbook Section --- */
+.guestbook-section {
+  background: #F4EFEB;
+  padding: 46px 20px;
+}
+
+.guestbook-form {
+  background: var(--wp-bg-card);
+  padding: 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--wp-border-gold);
+  box-shadow: var(--wp-shadow-sm);
+  margin-bottom: 22px;
+}
+
+.guestbook-form .form-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.guestbook-form input {
+  flex: 1;
+  padding: 10px 12px;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  border: 1px solid var(--wp-border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--wp-bg-soft);
+  outline: none;
+}
+
+.guestbook-form input:focus {
+  border-color: var(--wp-gold);
+  background: #fff;
+}
+
+.gb-submit-btn {
+  padding: 10px 20px;
+  background: var(--wp-navy-deep);
+  color: var(--wp-gold-light);
+  border: 1px solid var(--wp-gold);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.guestbook-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  border: 1px solid var(--wp-border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--wp-bg-soft);
+  outline: none;
+  resize: none;
+}
+
+.guestbook-form textarea:focus {
+  border-color: var(--wp-gold);
+  background: #fff;
+}
+
+.guestbook-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.gb-item {
+  background: var(--wp-bg-card);
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--wp-border-gold);
+  box-shadow: var(--wp-shadow-sm);
+}
+
+.gb-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  margin-bottom: 6px;
+}
+
+.gb-author {
+  font-weight: 700;
+  color: var(--wp-navy-deep);
+}
+
+.gb-date {
+  color: var(--wp-text-faint);
+}
+
+.gb-text {
+  font-family: var(--font-serif-body);
+  font-size: 0.88rem;
+  color: var(--wp-text-main);
+  line-height: 1.55;
+  word-break: break-word;
+}
+
+/* --- 13. Contact Section --- */
+.contact-section {
+  padding: 24px 20px 42px;
+}
+
+.contact-card {
+  background: var(--wp-bg-card);
+  border-radius: var(--radius-lg);
+  padding: 30px 20px;
+  border: 1px solid var(--wp-border-gold);
+  box-shadow: var(--wp-shadow-sm);
+  text-align: center;
+}
+
+.contact-title {
+  font-family: var(--font-serif-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--wp-navy-deep);
+  margin-bottom: 4px;
+}
+
+.contact-sub {
+  font-family: var(--font-serif-body);
+  font-size: 0.85rem;
+  color: var(--wp-text-muted);
+  margin-bottom: 20px;
+}
+
+.contact-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.contact-pill-btn {
+  flex: 1;
+  max-width: 160px;
+  padding: 12px 14px;
+  border-radius: var(--radius-full);
+  background: var(--wp-bg-soft);
+  border: 1px solid var(--wp-border-gold);
+  color: var(--wp-navy-deep);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: var(--transition-smooth);
+}
+
+.contact-pill-btn:active {
+  background: var(--wp-bg-alt);
+  transform: scale(0.96);
+}
+
+.contact-pill-btn svg {
+  width: 15px;
+  height: 15px;
+  color: var(--wp-gold-dark);
+}
+
+/* --- 14. Footer & Social Sharing --- */
+.footer {
+  background: var(--wp-navy-deep);
+  color: var(--wp-bg-paper);
+  padding: 48px 20px 64px;
+  text-align: center;
+  border-top: 2px solid var(--wp-gold);
+}
+
+.footer-share-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.share-btn {
+  flex: 1;
+  max-width: 175px;
+  padding: 14px 14px;
+  border-radius: var(--radius-md);
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.share-btn:active {
+  transform: scale(0.96);
+}
+
+.kakao-btn {
+  background-color: #FEE500;
+  color: #191919;
+}
+
+.link-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #FAF8F5;
+  border: 1px solid var(--wp-gold);
+}
+
+.share-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.copyright {
+  font-family: var(--font-accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  line-height: 1.8;
+  color: var(--wp-gold-light);
+  opacity: 0.8;
+}
+
+/* --- 15. Lightbox Modal --- */
+.lightbox-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+.lightbox-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 20, 28, 0.92);
+  backdrop-filter: blur(12px);
+}
+
+.lightbox-content {
+  position: relative;
+  z-index: 2001;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: -46px;
+  right: 0;
+  background: none;
+  border: none;
+  color: var(--wp-gold-light);
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 75vh;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--wp-gold);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+  object-fit: contain;
+}
+
+.lightbox-caption {
+  color: var(--wp-gold-light);
+  font-family: var(--font-serif-display);
+  font-size: 1.05rem;
+  margin-top: 14px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* --- 16. Toast Notification --- */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(50px);
+  background: var(--wp-navy-deep);
+  color: var(--wp-gold-light);
+  border: 1px solid var(--wp-gold);
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: 0.86rem;
+  font-weight: 600;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  z-index: 3000;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.35s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* --- 17. Responsive Fine-Tuning (< 360px) --- */
+@media (max-width: 360px) {
+  .section {
+    padding: 38px 16px;
+  }
+  .hero-title .title-main {
+    font-size: 2.9rem;
+  }
+  .countdown-grid {
+    gap: 4px;
+  }
+  .time-box {
+    min-width: 58px;
+  }
+  .time-digit-wrapper {
+    height: 58px;
+  }
+  .time-digit {
+    font-size: 1.7rem;
+  }
+  .map-wrapper-300 {
+    max-width: 100%;
+  }
+}
